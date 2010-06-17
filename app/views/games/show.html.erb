@@ -1,0 +1,28 @@
+<p>
+  <b>Title:</b>
+  <%=h @game.title %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @game.type %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%=h @game.body %>
+</p>
+
+<p>
+  <b>Place:</b>
+  <%=h @game.place %>
+</p>
+
+<p>
+  <b>Match at:</b>
+  <%=h @game.match_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
