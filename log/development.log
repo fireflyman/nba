@@ -23,3 +23,1577 @@ Migrating to CreateGames (20100617042100)
  WHERE type = 'table' AND NOT name = 'sqlite_sequence'
 [0m
   [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("games")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateGames (20100617042100)
+Migrating to CreateUsers (20100617061112)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar(40), "name" varchar(100) DEFAULT '', "email" varchar(100), "crypted_password" varchar(40), "salt" varchar(40), "created_at" datetime, "updated_at" datetime, "remember_token" varchar(40), "remember_token_expires_at" datetime) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mCREATE UNIQUE INDEX "index_users_on_login" ON "users" ("login")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100617061112')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("games")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateGames (20100617042100)
+Migrating to CreateUsers (20100617061112)
+Migrating to AddRolesToUsers (20100617062626)
+  [4;36;1mSQL (0.0ms)[0m   [0;1mselect sqlite_version(*)[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mALTER TABLE "users" ADD "roles" varchar(255) DEFAULT 'fbplayer'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20100617062626')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.0ms)[0m   [0m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_list("games")[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mPRAGMA index_list("users")[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mPRAGMA index_info('index_users_on_login')[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-17 14:42:19) [GET]
+
+ActionController::RoutingError (No route matches "/products" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-17 14:42:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+
+SyntaxError (C:/work/nba/app/controllers/users_controller.rb:61: syntax error, unexpected kEND, expecting $end):
+  
+
+Rendered rescues/_trace (203.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 14:42:56) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering users/index
+Completed in 203ms (View: 78, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 14:44:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (235.0ms)
+Completed in 2125ms (View: 2063, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-06-17 14:45:22) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (15.0ms)
+Completed in 296ms (View: 234, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 14:45:50) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"楊錫文", "email"=>"yangxiwen@glorisun.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"OiHAlOZonf/8EumWiPwJAAtUWAPpMfUSjgKELtskZRo=", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'yangxiwen@glorisun.com') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO "users" ("name", "salt", "roles", "updated_at", "crypted_password", "remember_token_expires_at", "remember_token", "login", "email", "created_at") VALUES('', '55d8d58efebc2857c876314d96f01370e7089b35', 'fbplayer', '2010-06-17 06:45:50', 'f5aea6bd1a31dab0d63c30e458684705893d366b', NULL, NULL, '楊錫文', 'yangxiwen@glorisun.com', '2010-06-17 06:45:50')[0m
+Redirected to http://localhost:3000/users
+Completed in 234ms (DB: 0) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 14:45:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (188.0ms)
+Completed in 297ms (View: 234, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 14:45:53) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (16.0ms)
+Completed in 266ms (View: 47, DB: 16) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 14:56:01) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/edit
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 79, DB: 0) | 200 OK [http://localhost/users/1/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 15:03:57) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/edit
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (16.0ms)
+Completed in 250ms (View: 78, DB: 16) | 200 OK [http://localhost/users/1/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 15:04:06) [PUT]
+  Parameters: {"user"=>{"roles"=>"Sponsor", "email"=>"yangxiwen@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"OiHAlOZonf/8EumWiPwJAAtUWAPpMfUSjgKELtskZRo=", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文' AND "users".id <> 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'yangxiwen@glorisun.com' AND "users".id <> 1) LIMIT 1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE "users" SET "roles" = 'Sponsor', "updated_at" = '2010-06-17 07:04:06' WHERE "id" = 1[0m
+Redirected to http://localhost:3000/users/1
+Completed in 187ms (DB: 0) | 302 Found [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 15:04:06) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (16.0ms)
+Completed in 110ms (View: 32, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 15:04:10) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (31.0ms)
+Completed in 219ms (View: 78, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 15:04:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (16.0ms)
+Completed in 141ms (View: 47, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 15:04:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_user_bar (15.0ms)
+Completed in 125ms (View: 31, DB: 31) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 16:38:00) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: No matching rules found for edit for #<User id: 1, login: "楊錫文", name: "", email: "yangxiwen@glorisun.com", crypted_password: "f5aea6bd1a31dab0d63c30e458684705893d366b", salt: "55d8d58efebc2857c876314d96f01370e7089b35", created_at: "2010-06-17 06:45:50", updated_at: "2010-06-17 07:04:06", remember_token: nil, remember_token_expires_at: nil, roles: "Sponsor"> (roles [:Sponsor], privileges [:edit, :update, :manage], context :users).
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 109ms (View: 15, DB: 0) | 403 Forbidden [http://localhost/users/1/edit]
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-06-17 16:49:59) [GET]
+
+ActionController::RoutingError (No route matches "/products" with {:method=>:get}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 16:50:01) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (15.0ms)
+Completed in 515ms (View: 109, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 16:50:05) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 47, DB: 16) | 200 OK [http://localhost/users/1/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 16:50:12) [PUT]
+  Parameters: {"user"=>{"roles"=>"Sponsor", "email"=>"yangxiwen@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"OiHAlOZonf/8EumWiPwJAAtUWAPpMfUSjgKELtskZRo=", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文' AND "users".id <> 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'yangxiwen@glorisun.com' AND "users".id <> 1) LIMIT 1[0m
+Redirected to http://localhost:3000/users/1
+Completed in 125ms (DB: 0) | 302 Found [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 16:50:13) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 15) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 16:50:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 16, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 16:50:18) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 32, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 16:50:20) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (31.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 172ms (View: 15, DB: 31) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 16:50:21) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 344ms (View: 32, DB: 0) | 200 OK [http://localhost/users/1/edit]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 16:50:23) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (16.0ms)
+Completed in 125ms (View: 16, DB: 0) | 200 OK [http://localhost/users/1]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 16:50:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 125ms (View: 32, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 17:44:56) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:44:57) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 109ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-06-17 17:44:59) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (15.0ms)
+Completed in 140ms (View: 62, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 17:45:05) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: No matching rules found for edit for #<Authorization::GuestUser:0x48d7134 @role_symbols=[:guest]> (roles [:guest], privileges [:edit, :update, :manage], context :users).
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 172ms (View: 16, DB: 0) | 403 Forbidden [http://localhost/users/1/edit]
+
+
+Processing UsersController#destroy (for 127.0.0.1 at 2010-06-17 17:45:09) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "authenticity_token"=>"rF9eEQDhndXDdGj7KstxHsR2arcAJd3jGquFyPTlMV4=", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: No matching rules found for destroy for #<Authorization::GuestUser:0x4c37194 @role_symbols=[:guest]> (roles [:guest], privileges [:destroy, :delete, :manage], context :users).
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 250ms (View: 16, DB: 0) | 403 Forbidden [http://localhost/users/1]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-06-17 17:45:13) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (0.0ms)
+Completed in 110ms (View: 32, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 17:45:44) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"汪宗良", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"rF9eEQDhndXDdGj7KstxHsR2arcAJd3jGquFyPTlMV4=", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 46, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 17:45:57) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"汪宗良", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"rF9eEQDhndXDdGj7KstxHsR2arcAJd3jGquFyPTlMV4=", "controller"=>"users"}
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO "users" ("name", "salt", "roles", "updated_at", "crypted_password", "remember_token_expires_at", "remember_token", "login", "email", "created_at") VALUES('', '148966c0e5eb071296adaca15aceeb7b054ee7e3', 'fbplayer', '2010-06-17 09:45:57', 'b85e42ba47ca5d1e69c75e258167b0efbf6aff7c', NULL, NULL, '汪宗良', 'wangzongliang@glorisun.com', '2010-06-17 09:45:57')[0m
+Redirected to http://localhost:3000/users
+Completed in 219ms (DB: 15) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:45:58) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 17:46:03) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: edit not allowed for #<User id: 2, login: "汪宗良", name: "", email: "wangzongliang@glorisun.com", crypted_password: "b85e42ba47ca5d1e69c75e258167b0efbf6aff7c", salt: "148966c0e5eb071296adaca15aceeb7b054ee7e3", created_at: "2010-06-17 09:45:57", updated_at: "2010-06-17 09:45:57", remember_token: nil, remember_token_expires_at: nil, roles: "fbplayer"> on #<User id: 1, login: "楊錫文", name: "", email: "yangxiwen@glorisun.com", crypted_password: "f5aea6bd1a31dab0d63c30e458684705893d366b", salt: "55d8d58efebc2857c876314d96f01370e7089b35", created_at: "2010-06-17 06:45:50", updated_at: "2010-06-17 07:04:06", remember_token: nil, remember_token_expires_at: nil, roles: "Sponsor">.
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 94ms (View: 0, DB: 15) | 403 Forbidden [http://localhost/users/1/edit]
+
+
+Processing UsersController#destroy (for 127.0.0.1 at 2010-06-17 17:46:08) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "authenticity_token"=>"rF9eEQDhndXDdGj7KstxHsR2arcAJd3jGquFyPTlMV4=", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: No matching rules found for destroy for #<User id: 2, login: "汪宗良", name: "", email: "wangzongliang@glorisun.com", crypted_password: "b85e42ba47ca5d1e69c75e258167b0efbf6aff7c", salt: "148966c0e5eb071296adaca15aceeb7b054ee7e3", created_at: "2010-06-17 09:45:57", updated_at: "2010-06-17 09:45:57", remember_token: nil, remember_token_expires_at: nil, roles: "fbplayer"> (roles [:fbplayer, :guest], privileges [:destroy, :delete, :manage], context :users).
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 266ms (View: 16, DB: 0) | 403 Forbidden [http://localhost/users/1]
+
+
+Processing UsersController#destroy (for 127.0.0.1 at 2010-06-17 17:46:12) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "authenticity_token"=>"rF9eEQDhndXDdGj7KstxHsR2arcAJd3jGquFyPTlMV4=", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Permission denied: No matching rules found for destroy for #<User id: 2, login: "汪宗良", name: "", email: "wangzongliang@glorisun.com", crypted_password: "b85e42ba47ca5d1e69c75e258167b0efbf6aff7c", salt: "148966c0e5eb071296adaca15aceeb7b054ee7e3", created_at: "2010-06-17 09:45:57", updated_at: "2010-06-17 09:45:57", remember_token: nil, remember_token_expires_at: nil, roles: "fbplayer"> (roles [:fbplayer, :guest], privileges [:destroy, :delete, :manage], context :users).
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 297ms (View: 0, DB: 0) | 403 Forbidden [http://localhost/users/2]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 17:46:15) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:46:30) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (15.0ms)
+Completed in 187ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 17:50:43) [GET]
+  Parameters: {"action"=>"edit", "id"=>"1", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+Permission denied: edit not allowed for #<User id: 2, login: "汪宗良", name: "", email: "wangzongliang@glorisun.com", crypted_password: "b85e42ba47ca5d1e69c75e258167b0efbf6aff7c", salt: "148966c0e5eb071296adaca15aceeb7b054ee7e3", created_at: "2010-06-17 09:45:57", updated_at: "2010-06-17 09:45:57", remember_token: nil, remember_token_expires_at: nil, roles: "fbplayer"> on #<User id: 1, login: "楊錫文", name: "", email: "yangxiwen@glorisun.com", crypted_password: "f5aea6bd1a31dab0d63c30e458684705893d366b", salt: "55d8d58efebc2857c876314d96f01370e7089b35", created_at: "2010-06-17 06:45:50", updated_at: "2010-06-17 07:04:06", remember_token: nil, remember_token_expires_at: nil, roles: "Sponsor">.
+Redirected to http://localhost:3000/users
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/users/1/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:50:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 141ms (View: 47, DB: 16) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 17:51:04) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:59:46) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 407ms (View: 141, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 17:59:53) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 17:59:53) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 109ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 17:59:55) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 47, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:00:06) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"w6g+RGv7QVBdpSptDh1h+/3xW2gWWCkaGNsKwPYUI10=", "controller"=>"sessions", "login"=>"楊錫文", "password"=>"[FILTERED]"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:00:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (15.0ms)
+Completed in 156ms (View: 62, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#destroy (for 127.0.0.1 at 2010-06-17 18:00:31) [DELETE]
+  Parameters: {"action"=>"destroy", "_method"=>"delete", "authenticity_token"=>"w6g+RGv7QVBdpSptDh1h+/3xW2gWWCkaGNsKwPYUI10=", "id"=>"1", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) [0m
+  [4;36;1mUser Destroy (0.0ms)[0m   [0;1mDELETE FROM "users" WHERE "id" = 1[0m
+Redirected to http://localhost:3000/users
+Completed in 203ms (DB: 0) | 302 Found [http://localhost/users/1]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:00:31) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+Rendered users/_user_bar (16.0ms)
+Completed in 266ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-06-17 18:00:35) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering users/new
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 32, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 18:00:48) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"楊錫文", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"w6g+RGv7QVBdpSptDh1h+/3xW2gWWCkaGNsKwPYUI10=", "controller"=>"users"}
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;36;1mCACHE (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;35;1mCACHE (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."remember_token" = '') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com') LIMIT 1[0m
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (0.0ms)
+Completed in 172ms (View: 47, DB: 16) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 18:01:07) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"楊錫文", "email"=>"wangzongliang@gmail.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"w6g+RGv7QVBdpSptDh1h+/3xW2gWWCkaGNsKwPYUI10=", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@gmail.com') LIMIT 1[0m
+  [4;36;1mUser Create (0.0ms)[0m   [0;1mINSERT INTO "users" ("name", "salt", "roles", "updated_at", "crypted_password", "remember_token_expires_at", "remember_token", "login", "email", "created_at") VALUES('', '359965de314334ff64ca0ad7f1c1c88902c6b7dd', 'fbplayer', '2010-06-17 10:01:07', 'fc9c097619606e6705daa4fc3142f9c6af2ef512', NULL, NULL, '楊錫文', 'wangzongliang@gmail.com', '2010-06-17 10:01:07')[0m
+Redirected to http://localhost:3000/users
+Completed in 235ms (DB: 0) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:01:07) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:01:10) [GET]
+  Parameters: {"action"=>"edit", "id"=>"3", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 32, DB: 0) | 200 OK [http://localhost/users/3/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:01:13) [PUT]
+  Parameters: {"user"=>{"roles"=>"Sponsor", "email"=>"wangzongliang@gmail.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"w6g+RGv7QVBdpSptDh1h+/3xW2gWWCkaGNsKwPYUI10=", "id"=>"3", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = '楊錫文' AND "users".id <> 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@gmail.com' AND "users".id <> 3) LIMIT 1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE "users" SET "roles" = 'Sponsor', "updated_at" = '2010-06-17 10:01:13' WHERE "id" = 3[0m
+Redirected to http://localhost:3000/users/3
+Completed in 219ms (DB: 0) | 302 Found [http://localhost/users/3]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:01:13) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (16.0ms)
+Completed in 313ms (View: 16, DB: 16) | 200 OK [http://localhost/users/3]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:01:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"users"}
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (15.0ms)
+Completed in 125ms (View: 15, DB: 15) | 200 OK [http://localhost/users/3]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:01:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:01:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 157ms (View: 63, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:03:10) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 47, DB: 15) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:03:12) [GET]
+  Parameters: {"action"=>"edit", "id"=>"3", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (15.0ms)
+Completed in 422ms (View: 312, DB: 0) | 200 OK [http://localhost/users/3/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:03:16) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 328ms (View: 31, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:03:18) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 328ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:03:20) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:03:20) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 110ms (View: 32, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:03:23) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:03:43) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"YUa6tdorNbYe0xkEog1CQcVMeehWBQxaEEGH3ldEidk=", "controller"=>"sessions", "login"=>"汪宗良", "password"=>"[FILTERED]"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = '汪宗良') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 93ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:03:43) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 32, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:03:45) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 579ms (View: 32, DB: 15) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:07:56) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (15.0ms)
+Completed in 531ms (View: 187, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:08:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 297ms (View: 63, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:08:09) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 47, DB: 15) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:08:16) [PUT]
+  Parameters: {"user"=>{"roles"=>"Sponsor", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"YUa6tdorNbYe0xkEog1CQcVMeehWBQxaEEGH3ldEidk=", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良' AND "users".id <> 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com' AND "users".id <> 2) LIMIT 1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE "users" SET "roles" = 'Sponsor', "updated_at" = '2010-06-17 10:08:16' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/users/2
+Completed in 203ms (DB: 0) | 302 Found [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:08:16) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 93ms (View: 15, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:08:19) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 266ms (View: 16, DB: 15) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:08:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 157ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:08:25) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 47, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:08:34) [PUT]
+  Parameters: {"user"=>{"roles"=>"fbplayer", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"YUa6tdorNbYe0xkEog1CQcVMeehWBQxaEEGH3ldEidk=", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良' AND "users".id <> 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com' AND "users".id <> 2) LIMIT 1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE "users" SET "roles" = 'fbplayer', "updated_at" = '2010-06-17 10:08:34' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/users/2
+Completed in 218ms (DB: 0) | 302 Found [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:08:34) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 16, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:09:46) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (16.0ms)
+Completed in 125ms (View: 16, DB: 16) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:09:48) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 141ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:09:50) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+
+ActionView::TemplateError (undefined method `to_s=' for [:fbplayer]:Array) on line #13 of app/views/users/edit.html.erb:
+10:       <%= f.label :email,"邮箱" %><br />
+11:       <%= f.text_field :email %>
+12:     </p>
+13:     <% if Authorization.current_user.role_symbols.to_s = "manage" %>
+14:      <p>
+15:        <%= f.label :roles,"角色" %><br />
+16:        <%= f.select :roles, [['球員','fbplayer'],['主辦方','Sponsor'],['供應商','Supplier']], {:include_blank=>"请选择",:selected => 0} %>
+
+    app/views/users/edit.html.erb:13
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (515.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:10:12) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 63, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:12:25) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+
+ActionView::TemplateError (undefined local variable or method `user' for #<ActionView::Base:0x4aba758>) on line #16 of app/views/users/edit.html.erb:
+13:     
+14:      <p>
+15:        <%= f.label :roles,"角色" %><br />
+16:        <%= f.select :roles, [['球員','fbplayer'],['主辦方','Sponsor'],['供應商','Supplier']], {:include_blank=>"请选择",:selected => 0} if permitted_to? :manage, user%>
+17:      </p>
+18:      <p>
+19:        <%= f.submit "更新" %>
+
+    app/views/users/edit.html.erb:16
+    app/views/users/edit.html.erb:3
+
+Rendered rescues/_trace (609.0ms)
+Rendered rescues/_request_and_response (0.0ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:13:07) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (172.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 328ms (View: 31, DB: 172) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:13:36) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 47, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:13:46) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 47, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:13:48) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (15.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:13:50) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 109ms (View: 15, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:13:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 219ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:14:11) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 344ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:14:13) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 47, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:14:17) [PUT]
+  Parameters: {"user"=>{"roles"=>"Sponsor", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"YUa6tdorNbYe0xkEog1CQcVMeehWBQxaEEGH3ldEidk=", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良' AND "users".id <> 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com' AND "users".id <> 2) LIMIT 1[0m
+  [4;36;1mUser Update (0.0ms)[0m   [0;1mUPDATE "users" SET "roles" = 'Sponsor', "updated_at" = '2010-06-17 10:14:17' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/users/2
+Completed in 235ms (DB: 16) | 302 Found [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:14:17) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (15.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (15.0ms)
+Completed in 109ms (View: 15, DB: 15) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:14:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 344ms (View: 63, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:14:22) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 31, DB: 16) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:14:44) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (16.0ms)
+Completed in 469ms (View: 266, DB: 16) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:14:48) [PUT]
+  Parameters: {"user"=>{"roles"=>"fbplayer", "email"=>"wangzongliang@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"YUa6tdorNbYe0xkEog1CQcVMeehWBQxaEEGH3ldEidk=", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = '汪宗良' AND "users".id <> 2) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wangzongliang@glorisun.com' AND "users".id <> 2) LIMIT 1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE "users" SET "roles" = 'fbplayer', "updated_at" = '2010-06-17 10:14:49' WHERE "id" = 2[0m
+Redirected to http://localhost:3000/users/2
+Completed in 219ms (DB: 0) | 302 Found [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:14:49) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 109ms (View: 15, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:15:03) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (16.0ms)
+Completed in 141ms (View: 32, DB: 15) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:15:07) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 47, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:15:09) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (16.0ms)
+Completed in 126ms (View: 16, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:15:12) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 265ms (View: 15, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:15:14) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:15:17) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 203ms (View: 16, DB: 0) | 200 OK [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:15:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:15:22) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 93ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:15:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 110ms (View: 32, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:15:26) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 47ms (View: 47, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:15:34) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"fPJOkMwbwCHOL+6v30LFnQYfTwDTYGUMFeLZLKsBkL8=", "controller"=>"sessions", "login"=>"楊錫文", "password"=>"[FILTERED]"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 219ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:15:35) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:15:37) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:15:51) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 78ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:15:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 109ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#new (for 127.0.0.1 at 2010-06-17 18:15:53) [GET]
+  Parameters: {"action"=>"new", "controller"=>"users"}
+Rendering template within layouts/application
+Rendering users/new
+Rendered users/_user_bar (0.0ms)
+Completed in 157ms (View: 47, DB: 0) | 200 OK [http://localhost/signup]
+
+
+Processing UsersController#create (for 127.0.0.1 at 2010-06-17 18:16:11) [POST]
+  Parameters: {"user"=>{"password_confirmation"=>"[FILTERED]", "password"=>"[FILTERED]", "login"=>"吳偉澤", "email"=>"wuweize@glorisun.com"}, "commit"=>"注册", "action"=>"create", "authenticity_token"=>"k9/WBS5vfBk5EeRlKGld4bYu2ax5XxWljMKrttz5la4=", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = '吳偉澤') LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wuweize@glorisun.com') LIMIT 1[0m
+  [4;35;1mUser Create (0.0ms)[0m   [0mINSERT INTO "users" ("name", "salt", "roles", "updated_at", "crypted_password", "remember_token_expires_at", "remember_token", "login", "email", "created_at") VALUES('', '956953803254503287cf7c4beff51535e3671055', 'fbplayer', '2010-06-17 10:16:12', 'ff187333c04597a61e1d27fa2bacac5aa83a596a', NULL, NULL, '吳偉澤', 'wuweize@glorisun.com', '2010-06-17 10:16:12')[0m
+Redirected to http://localhost:3000/users
+Completed in 234ms (DB: 0) | 302 Found [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:12) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 360ms (View: 47, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:16:14) [GET]
+  Parameters: {"action"=>"edit", "id"=>"4", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (15.0ms)
+Completed in 328ms (View: 31, DB: 0) | 200 OK [http://localhost/users/4/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:16) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 46, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:16:18) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:16:20) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:16:27) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"2nBa55pQjsJ2flgSnU+D85PcJMUnEATUKG6JZbdJXZM=", "controller"=>"sessions", "login"=>"楊錫文", "password"=>"[FILTERED]"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = '楊錫文') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:27) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (15.0ms)
+Completed in 468ms (View: 78, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:16:30) [GET]
+  Parameters: {"action"=>"edit", "id"=>"4", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/users/4/edit]
+
+
+Processing UsersController#update (for 127.0.0.1 at 2010-06-17 18:16:33) [PUT]
+  Parameters: {"user"=>{"roles"=>"Supplier", "email"=>"wuweize@glorisun.com"}, "commit"=>"更新", "action"=>"update", "_method"=>"put", "authenticity_token"=>"2nBa55pQjsJ2flgSnU+D85PcJMUnEATUKG6JZbdJXZM=", "id"=>"4", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT "users".id FROM "users" WHERE ("users"."login" = '吳偉澤' AND "users".id <> 4) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT "users".id FROM "users" WHERE ("users"."email" = 'wuweize@glorisun.com' AND "users".id <> 4) LIMIT 1[0m
+  [4;35;1mUser Update (0.0ms)[0m   [0mUPDATE "users" SET "roles" = 'Supplier', "updated_at" = '2010-06-17 10:16:34' WHERE "id" = 4[0m
+Redirected to http://localhost:3000/users/4
+Completed in 219ms (DB: 0) | 302 Found [http://localhost/users/4]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:16:34) [GET]
+  Parameters: {"action"=>"show", "id"=>"4", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering users/show
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 16, DB: 0) | 200 OK [http://localhost/users/4]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:36) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 187ms (View: 78, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:16:38) [GET]
+  Parameters: {"action"=>"edit", "id"=>"4", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (15.0ms)
+Completed in 140ms (View: 31, DB: 0) | 200 OK [http://localhost/users/4/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:16:40) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 672ms (View: 469, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:19) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (16.0ms)
+Completed in 188ms (View: 78, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:21:21) [GET]
+  Parameters: {"action"=>"edit", "id"=>"4", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (62.0ms)
+Completed in 187ms (View: 78, DB: 0) | 200 OK [http://localhost/users/4/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:23) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 187ms (View: 78, DB: 0) | 200 OK [http://localhost/users]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:21:25) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:25) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (15.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:21:27) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:21:37) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"VOJk/o6wdvW8kIyZVvSX/3GN3ZTB29cId58YtNe5v5A=", "controller"=>"sessions", "login"=>"吳偉澤", "password"=>"[FILTERED]"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = '吳偉澤') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 94ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:37) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 141ms (View: 32, DB: 15) | 200 OK [http://localhost/]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:21:50) [GET]
+  Parameters: {"action"=>"show", "id"=>"2", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Permission denied: show not allowed for #<User id: 4, login: "吳偉澤", name: "", email: "wuweize@glorisun.com", crypted_password: "ff187333c04597a61e1d27fa2bacac5aa83a596a", salt: "956953803254503287cf7c4beff51535e3671055", created_at: "2010-06-17 10:16:12", updated_at: "2010-06-17 10:16:34", remember_token: nil, remember_token_expires_at: nil, roles: "Supplier"> on #<User id: 2, login: "汪宗良", name: "", email: "wangzongliang@glorisun.com", crypted_password: "b85e42ba47ca5d1e69c75e258167b0efbf6aff7c", salt: "148966c0e5eb071296adaca15aceeb7b054ee7e3", created_at: "2010-06-17 09:45:57", updated_at: "2010-06-17 10:14:49", remember_token: nil, remember_token_expires_at: nil, roles: "fbplayer">.
+Redirected to http://localhost:3000/
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 93ms (DB: 0) | 302 Found [http://localhost/users/2]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:50) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 188ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing UsersController#show (for 127.0.0.1 at 2010-06-17 18:21:52) [GET]
+  Parameters: {"action"=>"show", "id"=>"3", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 3) [0m
+Permission denied: show not allowed for #<User id: 4, login: "吳偉澤", name: "", email: "wuweize@glorisun.com", crypted_password: "ff187333c04597a61e1d27fa2bacac5aa83a596a", salt: "956953803254503287cf7c4beff51535e3671055", created_at: "2010-06-17 10:16:12", updated_at: "2010-06-17 10:16:34", remember_token: nil, remember_token_expires_at: nil, roles: "Supplier"> on #<User id: 3, login: "楊錫文", name: "", email: "wangzongliang@gmail.com", crypted_password: "fc9c097619606e6705daa4fc3142f9c6af2ef512", salt: "359965de314334ff64ca0ad7f1c1c88902c6b7dd", created_at: "2010-06-17 10:01:07", updated_at: "2010-06-17 10:01:13", remember_token: nil, remember_token_expires_at: nil, roles: "Sponsor">.
+Redirected to http://localhost:3000/
+Filter chain halted as [:filter_access_filter] rendered_or_redirected.
+Completed in 109ms (DB: 0) | 302 Found [http://localhost/users/3]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:52) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 156ms (View: 47, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:21:53) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 156ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:21:54) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (15.0ms)[0m   [0;1mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 32, DB: 15) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:21:56) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:22:03) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"0XEos2yDCRmzDux6zJaYiJx/59UaHTZx9FwN11/MQNQ=", "controller"=>"sessions", "login"=>"吳偉澤", "password"=>"[FILTERED]"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = '吳偉澤') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 93ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:22:03) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+  [4;35;1mUser Load (16.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 140ms (View: 31, DB: 16) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#destroy (for 127.0.0.1 at 2010-06-17 18:22:06) [GET]
+  Parameters: {"action"=>"destroy", "controller"=>"sessions"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 4) LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 93ms (DB: 0) | 302 Found [http://localhost/logout]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:22:06) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 125ms (View: 31, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing SessionsController#new (for 127.0.0.1 at 2010-06-17 18:22:09) [GET]
+  Parameters: {"action"=>"new", "controller"=>"sessions"}
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (16.0ms)
+Completed in 31ms (View: 31, DB: 0) | 200 OK [http://localhost/login]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:22:15) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"0CMZ1ZZllM8lONt4U9k596ijCChlMQ9EEXtXE8Nhqdw=", "controller"=>"sessions", "login"=>"汪宗良", "password"=>"[FILTERED]"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."login" = '汪宗良') LIMIT 1[0m
+Failed login for '汪宗良' from 127.0.0.1 at Thu Jun 17 10:22:15 UTC 2010
+Rendering template within layouts/application
+Rendering sessions/new
+Rendered users/_user_bar (0.0ms)
+Completed in 266ms (View: 16, DB: 0) | 200 OK [http://localhost/session]
+
+
+Processing SessionsController#create (for 127.0.0.1 at 2010-06-17 18:22:21) [POST]
+  Parameters: {"commit"=>"Log in", "action"=>"create", "authenticity_token"=>"0CMZ1ZZllM8lONt4U9k596ijCChlMQ9EEXtXE8Nhqdw=", "controller"=>"sessions", "login"=>"汪宗良", "password"=>"[FILTERED]"}
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."login" = '汪宗良') LIMIT 1[0m
+Redirected to http://localhost:3000/
+Completed in 78ms (DB: 0) | 302 Found [http://localhost/session]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:22:21) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (16.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 172ms (View: 47, DB: 16) | 200 OK [http://localhost/]
+
+
+Processing UsersController#edit (for 127.0.0.1 at 2010-06-17 18:22:24) [GET]
+  Parameters: {"action"=>"edit", "id"=>"2", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" WHERE ("users"."id" = 2) [0m
+Rendering template within layouts/application
+Rendering users/edit
+Rendered users/_user_bar (16.0ms)
+Completed in 141ms (View: 32, DB: 0) | 200 OK [http://localhost/users/2/edit]
+
+
+Processing UsersController#index (for 127.0.0.1 at 2010-06-17 18:22:26) [GET]
+  Parameters: {"action"=>"index", "controller"=>"users"}
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM "users" [0m
+Rendering template within layouts/application
+Rendering users/index
+Rendered users/_user_bar (0.0ms)
+Completed in 157ms (View: 47, DB: 0) | 200 OK [http://localhost/]
