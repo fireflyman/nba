@@ -1,0 +1,22 @@
+<h1>Listing cts</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Game</th>
+  </tr>
+
+<% @cts.each do |ct| %>
+  <tr>
+    <td><%=h ct.user %></td>
+    <td><%=h ct.game %></td>
+    <td><%= link_to 'Show', ct %></td>
+    <td><%= link_to 'Edit', edit_ct_path(ct) %></td>
+    <td><%= link_to 'Destroy', ct, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New ct', new_ct_path %>

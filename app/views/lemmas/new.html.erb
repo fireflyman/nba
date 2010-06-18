@@ -1,0 +1,19 @@
+<% title "新建词条"  %>
+<fieldset>
+  <% form_for(@lemma) do |f| %>
+    <%= f.error_messages %>
+ 
+    <p>
+      <%= f.label :title,"标题" %><br />
+      <%= f.text_field :title %>
+    </p>
+    <p>
+      <%= f.label :body,"正文" %><br />
+      <%= f.text_area :body %>
+    </p>
+    <p>
+      <%= f.submit '创建' %>
+    </p>
+  <% end %>
+</fieldset>
+<%= link_to '返回首页 ', url_for(:back) %>

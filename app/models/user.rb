@@ -4,7 +4,16 @@ class User < ActiveRecord::Base
   include Authentication
   include Authentication::ByPassword
   include Authentication::ByCookieToken
-
+  #--------------------------------------------
+  named_scope :worthy,
+                     :limit => 10,
+                     :select => "id,login,point",
+                     :order =>"point DESC"
+                     
+  #-------------------添加關聯-------
+  has_many :coauthors
+  has_many :lemmas ,:through => :coauthors
+  #------------------------------------
   validates_presence_of     :login
   validates_length_of       :login,    :within => 3..40
   validates_uniqueness_of   :login
@@ -18,7 +27,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  
+ 
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation

@@ -1,0 +1,24 @@
+<h1>Editing lemma</h1>
+
+<% form_for(@lemma) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.label :point %><br />
+    <%= f.text_field :point %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @lemma %> |
+<%= link_to 'Back', lemmas_path %>

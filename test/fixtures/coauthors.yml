@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user: 
+  lemma: 
+  activion: false
+
+two:
+  user: 
+  lemma: 
+  activion: false

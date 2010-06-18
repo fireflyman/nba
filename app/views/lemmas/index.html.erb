@@ -1,0 +1,45 @@
+<% title "我的维基"  %>
+<table class="columns" >
+  <tr>
+    <td>
+      <h3>最新词条</h3>
+      <ul>
+        <% @latest_lemmas.each do |lemma| %>
+          <li><%= link_to lemma.title,lemma %></li>
+        <% end %>
+      </ul>
+    </td>
+    <td>
+      <h3>热门词条</h3>
+      <ul>
+        <% @hot_lemmas.each do |lemma| %>
+          <li><%= link_to lemma.title+ "(点击数：# {lemma.hits})",lemma %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h3>高分词条</h3>
+      <ul>
+        <% @reward_lemmas.each do |lemma| %>
+          <li><%= link_to lemma.title+ "(悬赏分：# {lemma.point})" ,lemma %></li>
+        <% end %>
+      </ul>
+    </td>
+    <td>
+      <h3>贡献榜</h3>
+      <ul>
+        <% @worthy_user.each do |wikier| %>
+          <li><%= link_to wikier.login+ "(悬赏分：# {wikier.point})" ,wikier %></li>
+        <% end %>
+      </ul>
+    </td>
+  </tr>
+</table>
+<hr />
+ 
+<%= link_to '新建词条 ', new_lemma_path %>
+<div>
+  <%= tag_cloud @tags%>
+</div>

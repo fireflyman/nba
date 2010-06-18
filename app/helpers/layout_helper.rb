@@ -16,4 +16,14 @@ module LayoutHelper
     args = args.map { |arg| arg == :defaults ? arg : arg.to_s }
     content_for(:head) { javascript_include_tag(*args) }
   end
+ #…………………….................................
+ 
+  def keywords *args
+    content_for(:keywords){ args }
+  end
+ 
+  def description *args
+    content_for(:description){ args }
+  end
+
 end

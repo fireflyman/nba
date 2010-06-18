@@ -1,0 +1,2 @@
+module CoauthorsHelper
+end

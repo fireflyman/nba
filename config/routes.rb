@@ -1,4 +1,11 @@
 ActionController::Routing::Routes.draw do |map|
+  #map.resources :coauthors
+
+  map.resources :lemmas, :member => {:add_tag => :put,:remove_tag =>:delete}, :collection => {:tag => :get} do |lemma|
+   lemma.resources :coauthors
+  end
+  
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
@@ -7,7 +14,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
   
-  map.root :users
+  #map.root :users 
+  map.root :lemmas
     
   map.resources :games
  
