@@ -5,6 +5,7 @@ class LemmasController < ApplicationController
   #filter_access_to [:new,:create, :edit, :update], :attribute_check => true
   def index
     @lemmas = Lemma.all
+    @tags  = Lemma.tag_counts 
   end
  
  # def show

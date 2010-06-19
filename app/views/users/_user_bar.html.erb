@@ -2,8 +2,9 @@
   <% if logged_in? %>
     <%= link_to "注销",logout_path, :title => "log in"  %>
     <%= link_to "欢迎，"+current_user.login+"!",current_user %>
-    <%= link_to "用户中心",current_user %>
+    <%= link_to "用户中心",current_user if permitted_to? :read_show, current_user %>
     <%= link_to "用户列表", users_path if controller_name != "users" %>
+    <%= link_to " 查看授权情况",authorization_usages_url if permitted_to? :manage,:authorization_usages   %>
   <% else %>
     <%= link_to "登录",  login_path, :title => "log in"  %>
     <%= link_to "注册", signup_path, :title => "create an account"  %>

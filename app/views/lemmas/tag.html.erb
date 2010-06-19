@@ -1,4 +1,6 @@
+<% content = [] %>
 <% @lemmas.each do |lemma| %>
+  <% content << lemma.title  %>
   <%= link_to lemma.title,lemma,:class => "lemma_title",:hidefocus=>"true" %>
   <%= truncate simple_format(lemma.body) ,:length => 250,:omission => "……#{link_to '全文',lemma}"%>
 <% end %>
@@ -6,3 +8,5 @@
 <p>
   <%= link_to "返回",url_for(:back) %>|<%= link_to "回到首页",root_url %>
 </p>
+<% keywords @tag %>
+<% description content.to_sentence %>

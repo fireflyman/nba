@@ -10,7 +10,7 @@
       <%= f.label :email,"邮箱" %><br />
       <%= f.text_field :email %>
     </p>
-    <% if Authorization.current_user.role_symbols.to_s != "fbplayer" %>
+    <% if Authorization.current_user.role_symbols.to_s == "Sponsor" %>
      <p>
        <%= f.label :roles,"角色" %><br />
        <%= f.select :roles, [['球員','fbplayer'],['主辦方','Sponsor'],['供應商','Supplier']], {:include_blank=>"请选择",:selected => 0} %>

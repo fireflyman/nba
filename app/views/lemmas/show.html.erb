@@ -2,7 +2,8 @@
  
 <%=simple_format @lemma.body %>
  <% seo_meta @lemma %>
-<% unless @lemma.contains?(current_user) %>
+
+<% if !@lemma.contains?(current_user) && permitted_to?(:create,Coauthor.new) %>
   <% form_for [@lemma,Coauthor.new] do |f| %>
     <%= f.submit "申请成为此词条的共同创作者" %>
   <% end %>
@@ -29,22 +30,24 @@
     <span id="<%= dom_id @lemma %>_tags"><%= tag_cloud @tags %></span>
     <%= link_to_remote "添加标签", :url => add_tag_lemma_url(@lemma),
       :method => 'put',
-      :before => "$tag = prompt('输入要添加的标签，多个标签请用英文逗号隔开！')",
+      :before => "$tag = prompt('输入要添加的标签，多个标签请用中文逗号隔开！')",
       :with => "'tag=' + $tag",
-      :html => {:class => "adjust_tag"}
-  %>
-    <%= link_to_remote "删除标签", :url => remove_tag_lemma_url(@lemma),
-      :method => 'delete',
-      :before => "$tag = prompt('输入要删除的标签，多个标签请用英文逗号隔开！')",
-      :with => "'tag=' + $tag",
-      :html => {:class => "adjust_tag"}
-  %>
+      :html => {:class => "adjust_tag"} \
+      if permitted_to? :add_tags,:lemmas
+    %>
+      <%= link_to_remote "删除标签", :url => remove_tag_lemma_url(@lemma),
+        :method => 'delete',
+        :before => "$tag = prompt('输入要删除的标签，多个标签请用中文逗号隔开！')",
+        :with => "'tag=' + $tag",
+        :html => {:class => "adjust_tag"} \
+        if permitted_to? :remove_tags,:lemmas
+      %>
   </p>
 </div>
 
  
  
-<% if @lemma.contains?(current_user) %>
-  <%= link_to '编辑该词条', [:edit,@lemma] %>
-<% end %>
+<%# if @lemma.contains?(current_user) %>
+  <%= link_to '编辑该词条', [:edit,@lemma] if permitted_to?:update,@lemma  %>
+<%#end %>
 <%= link_to '回到首页 ', lemmas_path %>

@@ -1,6 +1,7 @@
 authorization do
   role :guest do
     has_permission_on :users, :to => [:read_index,:create]
+    has_permission_on :lemmas, :to => :read
   end
  
   role :fbplayer do
@@ -8,26 +9,34 @@ authorization do
     has_permission_on :users, :to => [:read_show,:update] do
       if_attribute :id => is {user.id}
     end
+      has_permission_on  :coauthors, :to => :create
+      has_permission_on  :lemmas, :to => [:create,:add_tags,:remove_tags]
+      has_permission_on  :lemmas, :to => :update do
+      if_attribute :users => contains {user}
   end
- 
+ end
    role :Supplier do
-    includes :guest
-    has_permission_on :users, :to => [:read_show] do
-      if_attribute :id => is {user.id}
-    end
+    includes :fbplayer
+    has_permission_on :users, :to => :read_show
+    has_permission_on :lemmas, :to => :update
   end
  
   role :Sponsor do
-    has_permission_on :users, :to => :manage
+    #includes :Supplier
+    has_permission_on [:users,:lemmas, :coauthors ], :to => :manage
+    has_permission_on :authorization_rules, :to =>  :manage
+    has_permission_on :authorization_usages, :to => :manage
   end
 end
  
 privileges do
-  privilege :manage, :includes => [:create, :read, :update, :delete]
-  privilege :read, :includes => [:index, :show]
+  privilege :manage, :includes => [:create, :read, :update, :delete,:add_tags,:remove_tags]
+  privilege :read, :includes => [:index, :show, :tag]
   privilege :read_index, :includes => :index
   privilege :read_show, :includes => :show
   privilege :create, :includes => :new
+  privilege :add_tags,:includes => :add_tag
+  privilege :remove_tags,:includes => :remove_tag
   privilege :update, :includes => :edit
   privilege :delete, :includes => :destroy
 end

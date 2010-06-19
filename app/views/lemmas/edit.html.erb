@@ -1,24 +1,5 @@
-<h1>Editing lemma</h1>
-
-<% form_for(@lemma) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </p>
-  <p>
-    <%= f.label :point %><br />
-    <%= f.text_field :point %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @lemma %> |
-<%= link_to 'Back', lemmas_path %>
+<% title "修改词条" %>
+<fieldset> 
+<%=render :partial => "lemmas/form",:locals => {:button_name => "更新"} %> 
+</fieldset> 
+<%= link_to '返回', url_for(:back) %> | <%= link_to '回到首页', root_path %> 
