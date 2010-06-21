@@ -9,12 +9,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100618104604) do
+ActiveRecord::Schema.define(:version => 20100621043901) do
 
   create_table "coauthors", :force => true do |t|
     t.integer  "user_id"
     t.integer  "lemma_id"
     t.boolean  "activion",   :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cts", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "game_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -38,6 +45,16 @@ ActiveRecord::Schema.define(:version => 20100618104604) do
     t.string   "cache_tag_list"
     t.integer  "hits",           :default => 0
   end
+
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
